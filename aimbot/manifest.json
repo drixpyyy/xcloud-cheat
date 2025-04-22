@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Xcloud Vision Assist (Debugger Ext - EDU)",
+  "version": "0.1.0",
+  "description": "Experimental aim assist using TensorFlow.js and Debugger API for input simulation (Educational Use Only).",
+  "permissions": [
+    "debugger",
+    "storage",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://www.xbox.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.xbox.com/*/play*", "https://www.xbox.com/*/auth/msa?*loggedIn*"],
+      "js": ["content_script.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["coco-worker.js"],
+      "matches": ["https://www.xbox.com/*"]
+    }
+  ],
+  "action": {
+    "default_title": "Xcloud Assist",
+    "default_popup": "popup.html"
+  }
+}
